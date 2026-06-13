@@ -339,20 +339,68 @@
             </div>
           </div>
           
-          <!-- Contenedor Visual de la Paella -->
+          <!-- Contenedor del Carrusel de Imágenes de Nuestra Cocina -->
           <div class="lg:col-span-5 relative">
             <!-- Elemento decorativo de fondo (marco beige/sombra) -->
             <div class="absolute inset-0 bg-brand-sand rounded-2xl transform translate-x-3 translate-y-3 z-0" role="presentation"></div>
             
-            <!-- Imagen de la paella enmarcada -->
-            <div class="relative z-10 overflow-hidden rounded-2xl border-4 border-white shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
-              <img src="./assets/spanish_paella.png" alt="Fotografía en primer plano de una paella marinera casera servida en paella tradicional de hierro sobre una mesa de madera" class="w-full h-[350px] sm:h-[450px] object-cover">
+            <!-- Contenedor principal del Carrusel -->
+            <div class="relative z-10 overflow-hidden rounded-2xl border-4 border-white shadow-2xl bg-brand-cream h-[350px] sm:h-[450px] group" aria-roledescription="carousel" aria-label="Carrusel de platos típicos de Es Passeig / Carrusel de plats típics d'Es Passeig">
               
-              <!-- Etiqueta decorativa sobre la foto -->
-              <div class="absolute bottom-4 left-4 bg-brand-wood/90 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-serif text-sm italic shadow-md">
-                <span class="lang-es">🥘 Famosas paellas los miércoles y domingos</span>
-                <span class="lang-ca hidden">🥘 Famoses paelles els dimecres i diumenges</span>
+              <!-- Slides del Carrusel -->
+              <div class="relative w-full h-full">
+                
+                <!-- Slide 1: Paella -->
+                <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out z-10" aria-roledescription="slide" aria-label="1 de 3">
+                  <img src="./assets/spanish_paella.png" alt="Fotografía de paella marinera casera recién hecha en una sartén tradicional de hierro" class="w-full h-full object-cover">
+                  <!-- Pie de foto / Descripción -->
+                  <div class="absolute bottom-4 left-4 right-4 bg-brand-wood/95 backdrop-blur-sm px-4 py-2.5 rounded-lg text-white font-serif text-sm italic shadow-md z-20">
+                    <span class="lang-es">🥘 Famosas paellas los miércoles y domingos</span>
+                    <span class="lang-ca hidden">🥘 Famoses paelles els dimecres i diumenges</span>
+                  </div>
+                </div>
+
+                <!-- Slide 2: Calamarins -->
+                <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out z-0" aria-roledescription="slide" aria-label="2 de 3" aria-hidden="true">
+                  <img src="./assets/grilled_squids.png" alt="Fotografía de calamarines a la plancha aliñados con ajo, perejil y limón sobre un plato rústico" class="w-full h-full object-cover">
+                  <!-- Pie de foto / Descripción -->
+                  <div class="absolute bottom-4 left-4 right-4 bg-brand-wood/95 backdrop-blur-sm px-4 py-2.5 rounded-lg text-white font-serif text-sm italic shadow-md z-20">
+                    <span class="lang-es">🦑 Calamarins frescos a la plancha con ajo y perejil</span>
+                    <span class="lang-ca hidden">🦑 Calamarins frescos a la planxa amb all i julivert</span>
+                  </div>
+                </div>
+
+                <!-- Slide 3: Tapas variadas -->
+                <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out z-0" aria-roledescription="slide" aria-label="3 de 3" aria-hidden="true">
+                  <img src="./assets/tapas_selection.png" alt="Fotografía a vista de pájaro de una selección de tapas españolas tradicionales en cuencos de barro" class="w-full h-full object-cover">
+                  <!-- Pie de foto / Descripción -->
+                  <div class="absolute bottom-4 left-4 right-4 bg-brand-wood/95 backdrop-blur-sm px-4 py-2.5 rounded-lg text-white font-serif text-sm italic shadow-md z-20">
+                    <span class="lang-es">🧆 Tapas tradicionales y raciones variadas de mercado</span>
+                    <span class="lang-ca hidden">🧆 Tapes tradicionals i racions variades de mercat</span>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- Botones de Navegación del Carrusel -->
+              <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-brand-wood/65 hover:bg-brand-wood text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-brand-terracotta opacity-0 group-hover:opacity-100 transition-opacity duration-350" aria-label="Anterior diapositiva / Anterior diapositiva">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-brand-wood/65 hover:bg-brand-wood text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-brand-terracotta opacity-0 group-hover:opacity-100 transition-opacity duration-350" aria-label="Siguiente diapositiva / Següent diapositiva">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+
+              <!-- Indicadores de posición (Puntos) -->
+              <div class="absolute bottom-18 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
+                <button onclick="goToSlide(0)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white focus:outline-none transition-colors" aria-label="Ir a la diapositiva 1 / Anar a la diapositiva 1"></button>
+                <button onclick="goToSlide(1)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white focus:outline-none transition-colors" aria-label="Ir a la diapositiva 2 / Anar a la diapositiva 2"></button>
+                <button onclick="goToSlide(2)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white focus:outline-none transition-colors" aria-label="Ir a la diapositiva 3 / Anar a la diapositiva 3"></button>
+              </div>
+
             </div>
           </div>
 
@@ -810,6 +858,92 @@
     document.addEventListener('DOMContentLoaded', () => {
       const preferredLang = localStorage.getItem('preferred-lang') || 'es';
       setLanguage(preferredLang);
+    });
+
+    // LOGICA DEL CARRUSEL DE IMÁGENES
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let autoplayInterval;
+
+    function showSlide(index) {
+      if (index >= slides.length) {
+        currentSlideIndex = 0;
+      } else if (index < 0) {
+        currentSlideIndex = slides.length - 1;
+      } else {
+        currentSlideIndex = index;
+      }
+
+      slides.forEach((slide, i) => {
+        if (i === currentSlideIndex) {
+          slide.classList.remove('opacity-0', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+          slide.setAttribute('aria-hidden', 'false');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0');
+          slide.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === currentSlideIndex) {
+          dot.classList.remove('bg-white/30');
+          dot.classList.add('bg-white/80', 'scale-110');
+          dot.setAttribute('aria-current', 'true');
+        } else {
+          dot.classList.remove('bg-white/80', 'scale-110');
+          dot.classList.add('bg-white/30');
+          dot.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentSlideIndex + 1);
+      resetAutoplay();
+    }
+
+    function prevSlide() {
+      showSlide(currentSlideIndex - 1);
+      resetAutoplay();
+    }
+
+    function goToSlide(index) {
+      showSlide(index);
+      resetAutoplay();
+    }
+
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => {
+        showSlide(currentSlideIndex + 1);
+      }, 5000);
+    }
+
+    function stopAutoplay() {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+      }
+    }
+
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    // Inicializar carrusel
+    document.addEventListener('DOMContentLoaded', () => {
+      showSlide(0);
+      startAutoplay();
+      
+      const carouselContainer = document.querySelector('[aria-roledescription="carousel"]');
+      if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoplay);
+        carouselContainer.addEventListener('mouseleave', startAutoplay);
+        carouselContainer.addEventListener('focusin', stopAutoplay);
+        carouselContainer.addEventListener('focusout', startAutoplay);
+      }
     });
   </script>
 </body>
