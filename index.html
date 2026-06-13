@@ -34,8 +34,8 @@
               beige: '#FDFBF7', // Fondo cálido principal
               cream: '#F5EFE6', // Fondo alternativo suave
               wood: '#2E1A16',  // Marrón madera oscuro para textos principales y footer
-              terracotta: '#C85A32', // Naranja terracota para elementos destacados (CTA)
-              terracottaHover: '#A74420',
+              terracotta: '#B84B23', // Terracota adaptada para cumplimiento de contraste WCAG AA
+              terracottaHover: '#963B19',
               olive: '#415245', // Verde oliva para acentos de naturaleza y tradición
               oliveHover: '#334136',
               sand: '#EAE1D4',  // Color arena para bordes y separadores
@@ -76,9 +76,21 @@
     #mobile-menu {
       transition: all 0.3s ease-in-out;
     }
+
+    /* Estilos de accesibilidad para navegación por teclado (a11y focus rings) */
+    *:focus-visible {
+      outline: 3px solid #B84B23 !important;
+      outline-offset: 2.5px !important;
+    }
   </style>
 </head>
 <body class="overflow-x-hidden">
+
+  <!-- Enlace de salto de accesibilidad (Skip to main content) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-brand-terracotta focus:text-white focus:rounded-lg focus:shadow-lg focus:font-semibold focus:outline-none transition-all">
+    <span class="lang-es">Saltar al contenido principal</span>
+    <span class="lang-ca hidden">Saltar al contingut principal</span>
+  </a>
 
   <!-- ==================== STICKY NAVBAR ==================== -->
   <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-brand-beige/90 border-b border-brand-sand/40 shadow-sm">
@@ -86,7 +98,7 @@
       <div class="flex items-center justify-between h-20">
         
         <!-- Logo / Marca -->
-        <a href="#inicio" class="flex flex-col group">
+        <a href="#inicio" class="flex flex-col group" aria-label="Bar Es Passeig - Can Pedret, Inicio / Inici">
           <span class="font-serif text-2xl font-bold tracking-tight text-brand-wood group-hover:text-brand-terracotta transition-colors duration-200">
             Es Passeig
           </span>
@@ -96,7 +108,7 @@
         </a>
         
         <!-- Navegación de Escritorio -->
-        <nav class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+        <nav class="hidden md:flex space-x-6 lg:space-x-8 items-center" aria-label="Navegación principal / Navegació principal">
           <a href="#inicio" class="text-sm font-medium text-brand-wood hover:text-brand-terracotta transition-colors duration-200">
             <span class="lang-es">Inicio</span>
             <span class="lang-ca hidden">Inici</span>
@@ -116,15 +128,15 @@
           
           <!-- Selector de idioma escritorio -->
           <div class="flex items-center space-x-1 border border-brand-sand/60 rounded-full p-1 bg-brand-cream/30">
-            <button onclick="setLanguage('es')" class="btn-lang-es flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar a Castellano">
-              <svg class="w-4 h-2.5 rounded-sm shadow-sm" viewBox="0 0 750 500">
+            <button onclick="setLanguage('es')" class="btn-lang-es flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar idioma a Castellano / Canviar idioma a Castellà">
+              <svg class="w-4 h-2.5 rounded-sm shadow-sm" viewBox="0 0 750 500" aria-hidden="true">
                 <rect width="750" height="500" fill="#c11518"/>
                 <rect y="125" width="750" height="250" fill="#fab800"/>
               </svg>
               <span>ES</span>
             </button>
-            <button onclick="setLanguage('ca')" class="btn-lang-ca flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar a Catalán">
-              <svg class="w-4 h-2.5 rounded-sm shadow-sm" viewBox="0 0 9 6">
+            <button onclick="setLanguage('ca')" class="btn-lang-ca flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar idioma a Catalán / Canviar idioma a Català">
+              <svg class="w-4 h-2.5 rounded-sm shadow-sm" viewBox="0 0 9 6" aria-hidden="true">
                 <rect width="9" height="6" fill="#ffd700"/>
                 <rect y="0.67" width="9" height="0.67" fill="#e30513"/>
                 <rect y="2" width="9" height="0.67" fill="#e30513"/>
@@ -136,8 +148,8 @@
           </div>
           
           <!-- Botón de llamada rápida en navbar -->
-          <a href="tel:971148410" class="inline-flex items-center justify-center px-4 h-10 rounded-full text-sm font-medium text-white bg-brand-olive hover:bg-brand-oliveHover transition-colors duration-200 shadow-sm">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <a href="tel:971148410" class="inline-flex items-center justify-center px-4 h-10 rounded-full text-sm font-medium text-white bg-brand-olive hover:bg-brand-oliveHover transition-colors duration-200 shadow-sm" aria-label="Llamar al 971 148 410 / Trucar al 971 148 410">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
             </svg>
             971 148 410
@@ -148,15 +160,15 @@
         <div class="flex items-center space-x-4 md:hidden">
           <!-- Selector de idioma móvil -->
           <div class="flex items-center space-x-1 border border-brand-sand/60 rounded-full p-0.5 bg-brand-cream/30 scale-90 sm:scale-100">
-            <button onclick="setLanguage('es')" class="btn-lang-es flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar a Castellano">
-              <svg class="w-3.5 h-2.5 rounded-sm shadow-sm" viewBox="0 0 750 500">
+            <button onclick="setLanguage('es')" class="btn-lang-es flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar idioma a Castellano / Canviar idioma a Castellà">
+              <svg class="w-3.5 h-2.5 rounded-sm shadow-sm" viewBox="0 0 750 500" aria-hidden="true">
                 <rect width="750" height="500" fill="#c11518"/>
                 <rect y="125" width="750" height="250" fill="#fab800"/>
               </svg>
               <span>ES</span>
             </button>
-            <button onclick="setLanguage('ca')" class="btn-lang-ca flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar a Catalán">
-              <svg class="w-3.5 h-2.5 rounded-sm shadow-sm" viewBox="0 0 9 6">
+            <button onclick="setLanguage('ca')" class="btn-lang-ca flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all duration-200 focus:outline-none" aria-label="Cambiar idioma a Catalán / Canviar idioma a Català">
+              <svg class="w-3.5 h-2.5 rounded-sm shadow-sm" viewBox="0 0 9 6" aria-hidden="true">
                 <rect width="9" height="6" fill="#ffd700"/>
                 <rect y="0.67" width="9" height="0.67" fill="#e30513"/>
                 <rect y="2" width="9" height="0.67" fill="#e30513"/>
@@ -168,8 +180,8 @@
           </div>
 
           <!-- Botón Hamburguesa -->
-          <button id="menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-brand-wood hover:text-brand-terracotta hover:bg-brand-cream transition-colors duration-200 focus:outline-none" aria-label="Abrir menú">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <button id="menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-brand-wood hover:text-brand-terracotta hover:bg-brand-cream transition-colors duration-200 focus:outline-none" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menú principal / Menú principal">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
               <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
@@ -179,7 +191,7 @@
     </div>
     
     <!-- Menú Móvil Desplegable -->
-    <div id="mobile-menu" class="hidden md:hidden bg-brand-beige border-b border-brand-sand/60 animate-fade-in">
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-beige border-b border-brand-sand/60 animate-fade-in" aria-label="Menú móvil / Menú mòbil">
       <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-center shadow-lg">
         <a href="#inicio" class="block px-3 py-3 rounded-md text-base font-semibold text-brand-wood hover:bg-brand-cream hover:text-brand-terracotta transition-all duration-200">
           <span class="lang-es">Inicio</span>
@@ -205,456 +217,461 @@
     </div>
   </header>
 
-  <!-- ==================== SECCIÓN PORTADA (HERO) ==================== -->
-  <section id="inicio" class="relative min-h-screen flex items-center justify-center bg-brand-wood pt-20 overflow-hidden">
-    <!-- Imagen de Fondo Cozy -->
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 transform scale-105" style="background-image: url('./assets/cozy_bar_interior.png');"></div>
-    
-    <!-- Capa de Superposición Oscura Gradual -->
-    <div class="absolute inset-0 bg-gradient-to-t from-brand-wood via-brand-wood/60 to-black/40"></div>
-    
-    <!-- Contenido del Hero -->
-    <div class="relative max-w-4xl mx-auto px-4 text-center text-white animate-fade-in z-10">
-      
-      <!-- Detalle decorativo superior -->
-      <div class="flex items-center justify-center mb-6 space-x-2">
-        <span class="h-[1px] w-8 bg-brand-gold"></span>
-        <span class="text-brand-gold font-serif italic text-sm tracking-widest uppercase">
-          <span class="lang-es">Bienvenido a casa</span>
-          <span class="lang-ca hidden">Benvingut a casa</span>
-        </span>
-        <span class="h-[1px] w-8 bg-brand-gold"></span>
-      </div>
-      
-      <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-shadow-hero leading-tight">
-        Bar Es Passeig
-        <span class="block text-brand-gold/90 mt-2 font-serif italic font-normal text-2xl sm:text-3xl md:text-4xl">Can Pedret</span>
-      </h1>
-      
-      <p class="text-lg sm:text-xl md:text-2xl font-light tracking-wide text-brand-sand max-w-2xl mx-auto mb-10 text-shadow-hero">
-        <span class="lang-es">El sabor de lo auténtico y el ambiente más familiar.</span>
-        <span class="lang-ca hidden">El sabor de l'autèntic i l'ambient més familiar.</span>
-      </p>
-      
-      <!-- Botones de Acción Destacados (CTAs) -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-        
-        <!-- CTA 1: Ver Menú en Instagram -->
-        <a href="https://www.instagram.com/barespasseignou_canpedret/" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-brand-terracotta hover:bg-brand-terracottaHover text-white text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
-          <svg class="w-5 h-5 mr-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-          </svg>
-          <span class="lang-es">Ver Menú del Día</span>
-          <span class="lang-ca hidden">Veure Menú del Dia</span>
-        </a>
-        
-        <!-- CTA 2: Llamar por teléfono -->
-        <a href="tel:971148410" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-brand-wood text-white text-base font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-          </svg>
-          <span class="lang-es">Llamar al 971 148 410</span>
-          <span class="lang-ca hidden">Trucar al 971 148 410</span>
-        </a>
-        
-      </div>
-    </div>
-    
-    <!-- Indicador de Scroll hacia abajo -->
-    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/50 hover:text-white transition-colors duration-200 z-10">
-      <a href="#cocina" aria-label="Ir a Nuestra Cocina" class="flex flex-col items-center">
-        <span class="text-xs uppercase tracking-widest font-semibold mb-2">
-          <span class="lang-es">Descubrir</span>
-          <span class="lang-ca hidden">Descobrir</span>
-        </span>
-        <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </a>
-    </div>
-  </section>
+  <!-- Contenido Principal accesible -->
+  <main id="main-content" tabindex="-1" class="outline-none">
 
-  <!-- ==================== SECCIÓN "NUESTRA COCINA" ==================== -->
-  <section id="cocina" class="py-24 bg-brand-beige overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        
-        <!-- Bloque de Texto -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="flex items-center space-x-2">
-            <span class="text-brand-terracotta font-bold text-sm tracking-wider uppercase">
-              <span class="lang-es">De la cocina a tu mesa</span>
-              <span class="lang-ca hidden">De la cuina a la teva taula</span>
-            </span>
-            <span class="h-[1px] w-12 bg-brand-terracotta"></span>
-          </div>
-          
-          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-wood leading-tight">
-            <span class="lang-es">Nuestra Cocina</span>
-            <span class="lang-ca hidden">La nostra cuina</span>
-          </h2>
-          
-          <!-- Separador decorativo -->
-          <div class="w-16 h-1 bg-brand-gold my-4"></div>
-          
-          <div class="relative">
-            <!-- Comilla decorativa grande de fondo -->
-            <span class="absolute -top-10 -left-6 font-serif text-8xl text-brand-sand/50 select-none">“</span>
-            
-            <p class="relative font-sans text-lg sm:text-xl text-brand-wood/90 leading-relaxed italic pr-4">
-              <span class="lang-es">¿Te apetecen unos Calamarins o una buena Paella? En Es Passeig cocinamos como en casa. Nos apasiona el producto local y el trato cercano con nuestros clientes. Todos los miércoles y domingos preparamos nuestras famosas paellas caseras (¡también para llevar!), aunque te advertimos... ¡vuelan! Pásate a comprobar por qué nuestro ambiente familiar te hará sentir como en tu propio comedor.</span>
-              <span class="lang-ca hidden">Et ve de gust uns Calamarins o una bona Paella? A Es Passeig cuinem com a casa. Ens apassiona el producte local i el tracte proper amb els nostres clients. Tots els dimecres i diumenges preparem les nostres famoses paelles casolanes (¡també per emportar!), encara que t'advertim... ¡volen! Vine a comprovar per què el nostre ambient familiar et farà sentir com al teu propi menjador.</span>
-            </p>
-          </div>
-          
-          <!-- Firma de la casa -->
-          <div class="pt-4 flex items-center space-x-4">
-            <div class="h-10 w-10 rounded-full bg-brand-sand flex items-center justify-center">
-              <svg class="w-5 h-5 text-brand-olive" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <div>
-              <p class="font-serif text-lg font-bold text-brand-wood italic">Es Passeig - Can Pedret</p>
-              <p class="text-xs text-brand-olive font-semibold uppercase tracking-wider">
-                <span class="lang-es">Tu bar familiar en Bunyola</span>
-                <span class="lang-ca hidden">El teu bar familiar a Bunyola</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Contenedor Visual de la Paella -->
-        <div class="lg:col-span-5 relative">
-          <!-- Elemento decorativo de fondo (marco beige/sombra) -->
-          <div class="absolute inset-0 bg-brand-sand rounded-2xl transform translate-x-3 translate-y-3 z-0"></div>
-          
-          <!-- Imagen de la paella enmarcada -->
-          <div class="relative z-10 overflow-hidden rounded-2xl border-4 border-white shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
-            <img src="./assets/spanish_paella.png" alt="Paella casera en pan tradicional" class="w-full h-[350px] sm:h-[450px] object-cover">
-            
-            <!-- Etiqueta decorativa sobre la foto -->
-            <div class="absolute bottom-4 left-4 bg-brand-wood/90 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-serif text-sm italic shadow-md">
-              <span class="lang-es">🥘 Famosas paellas los miércoles y domingos</span>
-              <span class="lang-ca hidden">🥘 Famoses paelles els dimecres i diumenges</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== SECCIÓN "EL MENÚ DEL DÍA" ==================== -->
-  <section id="menu" class="py-24 bg-brand-cream border-y border-brand-sand/30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ==================== SECCIÓN PORTADA (HERO) ==================== -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center bg-brand-wood pt-20 overflow-hidden" aria-label="Inicio / Inici">
+      <!-- Imagen de Fondo Cozy -->
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 transform scale-105" style="background-image: url('./assets/cozy_bar_interior.png');" role="img" aria-label="Fotografía del acogedor comedor de madera rústico de Bar Es Passeig"></div>
       
-      <!-- Encabezado de la Sección -->
-      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
-        <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-wood">
-          <span class="lang-es">📋 ¿Qué comemos hoy?</span>
-          <span class="lang-ca hidden">📋 Què mengem avui?</span>
-        </h2>
-        <div class="w-16 h-1 bg-brand-terracotta mx-auto"></div>
-        <p class="text-sm sm:text-base font-semibold text-brand-terracotta uppercase tracking-widest">
-          <span class="lang-es">Fresco, de mercado y hecho hoy</span>
-          <span class="lang-ca hidden">Fresc, de mercat i fet avui</span>
-        </p>
-        <p class="text-base sm:text-lg text-brand-wood/80 max-w-xl mx-auto italic">
-          <strong class="font-medium text-brand-wood">
-            <span class="lang-es">Nota para el cliente:</span>
-            <span class="lang-ca hidden">Nota per al client:</span>
-          </strong>
-          <span class="lang-es">No busques una carta fija aquí; en Es Passeig cocinamos con lo que nos ofrece el mercado cada mañana. Cambiamos nuestro menú diariamente para garantizar la máxima frescura.</span>
-          <span class="lang-ca hidden">No busquis una carta fixa aquí; a Es Passeig cuinem amb el que ens ofereix el mercat cada matí. Canviem el nostre menú diàriament per garantir la màxima frescor.</span>
-        </p>
-      </div>
-
-      <!-- Tarjetas de Precios del Menú y Paellas -->
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 px-4">
-        <!-- Bloque de Menús -->
-        <div class="bg-brand-beige p-6 sm:p-8 rounded-2xl border border-brand-sand/60 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
-          <div>
-            <div class="flex items-center justify-between mb-6">
-              <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-wood flex items-center">
-                <span class="text-brand-terracotta mr-2">🍴</span>
-                <span class="lang-es">Menú del Día</span>
-                <span class="lang-ca hidden">Menú del Dia</span>
-              </h3>
-              <span class="px-2.5 py-1 bg-brand-olive/10 text-brand-olive rounded-full text-xs font-bold uppercase tracking-wider">
-                <span class="lang-es">De Mercado</span>
-                <span class="lang-ca hidden">De Mercat</span>
-              </span>
-            </div>
-            <ul class="space-y-4 font-sans text-brand-wood">
-              <li class="flex items-center justify-between border-b border-brand-sand/30 pb-2">
-                <div class="flex flex-col">
-                  <span class="font-semibold text-sm sm:text-base">
-                    <span class="lang-es">Menú Entre Semana</span>
-                    <span class="lang-ca hidden">Menú Entre Setmana</span>
-                  </span>
-                  <span class="text-xs text-brand-wood/60">
-                    <span class="lang-es">De lunes a viernes</span>
-                    <span class="lang-ca hidden">De dilluns a divendres</span>
-                  </span>
-                </div>
-                <span class="text-xl font-bold text-brand-terracotta">9€</span>
-              </li>
-              <li class="flex items-center justify-between border-b border-brand-sand/30 pb-2">
-                <div class="flex flex-col">
-                  <span class="font-semibold text-sm sm:text-base">
-                    <span class="lang-es">Menú Fin de Semana</span>
-                    <span class="lang-ca hidden">Menú Cap de Setmana</span>
-                  </span>
-                  <span class="text-xs text-brand-wood/60">
-                    <span class="lang-es">Sábados y domingos</span>
-                    <span class="lang-ca hidden">Dissabtes i diumenges</span>
-                  </span>
-                </div>
-                <span class="text-xl font-bold text-brand-terracotta">12€</span>
-              </li>
-              <li class="flex items-center justify-between pt-1">
-                <div class="flex flex-col">
-                  <span class="font-semibold text-sm sm:text-base">
-                    <span class="lang-es">Opción de Medio Menú</span>
-                    <span class="lang-ca hidden">Opció de Mig Menú</span>
-                  </span>
-                  <span class="text-xs text-brand-wood/60">
-                    <span class="lang-es">Disponible todos los días</span>
-                    <span class="lang-ca hidden">Disponible tots els dies</span>
-                  </span>
-                </div>
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-olive bg-brand-cream border border-brand-sand/40 px-2.5 py-1.5 rounded-lg">
-                  <span class="lang-es">Cada día</span>
-                  <span class="lang-ca hidden">Cada dia</span>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Bloque de Paellas -->
-        <div class="bg-brand-beige p-6 sm:p-8 rounded-2xl border border-brand-sand/60 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
-          <div>
-            <div class="flex items-center justify-between mb-6">
-              <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-wood flex items-center">
-                <span class="text-brand-terracotta mr-2">🥘</span>
-                <span class="lang-es">Nuestras Paellas</span>
-                <span class="lang-ca hidden">Les nostres paelles</span>
-              </h3>
-              <span class="px-2.5 py-1 bg-brand-terracotta/10 text-brand-terracotta rounded-full text-xs font-bold uppercase tracking-wider">
-                <span class="lang-es">Especialidad</span>
-                <span class="lang-ca hidden">Especialitat</span>
-              </span>
-            </div>
-            <ul class="space-y-4 font-sans text-brand-wood">
-              <li class="flex items-center justify-between border-b border-brand-sand/30 pb-2">
-                <div class="flex flex-col">
-                  <span class="font-semibold text-sm sm:text-base">
-                    <span class="lang-es">Ración para llevar</span>
-                    <span class="lang-ca hidden">Ració per emportar</span>
-                  </span>
-                  <span class="text-xs text-brand-wood/60">
-                    <span class="lang-es">Miércoles y domingos</span>
-                    <span class="lang-ca hidden">Dimecres i diumenges</span>
-                  </span>
-                </div>
-                <span class="text-xl font-bold text-brand-terracotta">7€</span>
-              </li>
-              <li class="flex items-center justify-between pt-1">
-                <div class="flex flex-col">
-                  <span class="font-semibold text-sm sm:text-base">
-                    <span class="lang-es">Pedidos de Paella</span>
-                    <span class="lang-ca hidden">Encàrrecs de Paella</span>
-                  </span>
-                  <span class="text-xs text-brand-wood/60">
-                    <span class="lang-es">Por encargo previo</span>
-                    <span class="lang-ca hidden">Per encàrrec previ</span>
-                  </span>
-                </div>
-                <span class="text-xl font-bold text-brand-terracotta">10€<span class="text-xs font-normal text-brand-wood/75">/p</span></span>
-              </li>
-            </ul>
-          </div>
-          <p class="text-[11px] text-brand-olive/90 italic mt-6 border-t border-brand-sand/20 pt-3 flex items-center">
-            <span class="mr-1">⚠️</span>
-            <span class="lang-es">Nota: Recuerda llamar con antelación para asegurar tus raciones.</span>
-            <span class="lang-ca hidden">Nota: Recorda trucar amb antelació per assegurar les teves racions.</span>
-          </p>
-        </div>
-      </div>
+      <!-- Capa de Superposición Oscura Gradual -->
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-wood via-brand-wood/60 to-black/40"></div>
       
-      <!-- Contenedor Maquetado Estéticamente para Social Feed -->
-      <div class="max-w-5xl mx-auto mb-14">
+      <!-- Contenido del Hero -->
+      <div class="relative max-w-4xl mx-auto px-4 text-center text-white animate-fade-in z-10">
         
-        <!-- COMENTARIO REQUERIDO EN EL CÓDIGO -->
-        <!-- INSERTA TU WIDGET DE INSTAGRAM AQUÍ -->
-        
-        <!-- Simulación visual de un espacio limpio y minimalista -->
-        <div class="bg-brand-beige rounded-2xl border-2 border-dashed border-brand-sand p-10 text-center flex flex-col items-center justify-center space-y-3 shadow-sm">
-          <div class="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center text-brand-olive/75 text-xl">
-            📷
-          </div>
-          <h4 class="font-serif text-lg font-bold text-brand-wood">
-            <span class="lang-es">Novedades en nuestro Instagram</span>
-            <span class="lang-ca hidden">Novetats al nostre Instagram</span>
-          </h4>
-          <p class="text-xs sm:text-sm text-brand-wood/60 max-w-md">
-            <span class="lang-es">Espacio reservado para las últimas publicaciones de Instagram. Aquí se cargarán automáticamente nuestras fotos diarias, recomendaciones y platos del día.</span>
-            <span class="lang-ca hidden">Espai reservat per a les últimes publicacions d'Instagram. Aquí es carregaran automàticament les nostres fotos diàries, recomanacions i plats del dia.</span>
-          </p>
-        </div>
-      </div>
-      
-      <!-- Botones para Seguir Redes Sociales -->
-      <div class="flex items-center justify-center">
-        
-        <!-- Enlace Instagram -->
-        <a href="https://www.instagram.com/barespasseignou_canpedret/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border border-brand-terracotta text-brand-terracotta hover:bg-brand-terracotta hover:text-white rounded-lg font-medium tracking-wide transition-all duration-300 text-sm shadow-sm hover:shadow">
-          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
-          </svg>
-          <span class="lang-es">[ Síguenos en Instagram ]</span>
-          <span class="lang-ca hidden">[ Segueix-nos a Instagram ]</span>
-        </a>
-        
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== SECCIÓN "INFO PRÁCTICA Y RESERVAS" ==================== -->
-  <section id="reservas" class="py-24 bg-brand-beige">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Título de Sección -->
-      <div class="text-center space-y-4 mb-16">
-        <div class="flex items-center justify-center space-x-2">
-          <span class="text-brand-olive font-bold text-sm tracking-wider uppercase">
-            <span class="lang-es">¡Te esperamos!</span>
-            <span class="lang-ca hidden">T'esperem!</span>
+        <!-- Detalle decorativo superior -->
+        <div class="flex items-center justify-center mb-6 space-x-2">
+          <span class="h-[1px] w-8 bg-brand-gold"></span>
+          <span class="text-brand-gold font-serif italic text-sm tracking-widest uppercase">
+            <span class="lang-es">Bienvenido a casa</span>
+            <span class="lang-ca hidden">Benvingut a casa</span>
           </span>
-          <span class="h-[1px] w-12 bg-brand-olive"></span>
-        </div>
-        <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-wood">
-          <span class="lang-es">Contacto y Reservas</span>
-          <span class="lang-ca hidden">Contacte i Reserves</span>
-        </h2>
-        <div class="w-16 h-1 bg-brand-gold mx-auto"></div>
-      </div>
-      
-      <!-- Contenido en cuadrícula -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-        
-        <!-- Bloque Izquierdo: Información y Reservas -->
-        <div class="lg:col-span-5 space-y-8">
-          
-          <!-- Tarjeta de Reservas -->
-          <div class="bg-brand-cream p-8 rounded-2xl border border-brand-sand shadow-sm space-y-6">
-            <h3 class="font-serif text-2xl font-bold text-brand-wood flex items-center">
-              <span class="text-brand-terracotta mr-3 text-2xl">📆</span>
-              <span class="lang-es">Reservas y Pedidos</span>
-              <span class="lang-ca hidden">Reserves i Comandes</span>
-            </h3>
-            
-            <p class="text-brand-wood/90 leading-relaxed font-sans text-base">
-              <span class="lang-es">No disponemos de sistema de reserva online. Gestionamos todo a la vieja usanza, con una sonrisa y al teléfono. Llámanos al <strong class="font-bold text-brand-terracotta">971 148 410</strong> para asegurar tu mesa o encargar tu paella para llevar.</span>
-              <span class="lang-ca hidden">No disposem de sistema de reserva online. Gestionem tot a la antiga, amb un somriure i al telèfon. Truca'ns al <strong class="font-bold text-brand-terracotta">971 148 410</strong> per assegurar la teva taula o encarregar la teva paella per emportar.</span>
-            </p>
-            
-            <!-- Botón Llamar Directo -->
-            <a href="tel:971148410" class="inline-flex w-full items-center justify-center px-6 py-4 bg-brand-terracotta hover:bg-brand-terracottaHover text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
-              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-              </svg>
-              <span class="lang-es">LLAMAR AHORA: 971 148 410</span>
-              <span class="lang-ca hidden">TRUCAR ARA: 971 148 410</span>
-            </a>
-          </div>
-          
-          <!-- Tarjeta de Detalles del Negocio -->
-          <div class="space-y-4">
-            
-            <!-- Dirección -->
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 mt-1">
-                <span class="text-2xl">📍</span>
-              </div>
-              <div>
-                <h4 class="font-semibold text-brand-wood text-sm uppercase tracking-wider">
-                  <span class="lang-es">Dirección</span>
-                  <span class="lang-ca hidden">Adreça</span>
-                </h4>
-                <p class="text-brand-wood/80 mt-1">
-                  <span class="lang-es">Passeig d'Antoni Maura, 07110 Bunyola, Mallorca (Islas Baleares)</span>
-                  <span class="lang-ca hidden">Passeig d'Antoni Maura, 07110 Bunyola, Mallorca (Illes Balears)</span>
-                </p>
-                <!-- Botón de Maps directo -->
-                <a href="https://maps.app.goo.gl/E7UcRHT7ypk3KpWN9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-brand-terracotta hover:text-brand-terracottaHover mt-2 transition-colors duration-200">
-                  <span class="lang-es">Ver en Google Maps &rarr;</span>
-                  <span class="lang-ca hidden">Veure a Google Maps &rarr;</span>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Horario Especial -->
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 mt-1">
-                <span class="text-2xl">🕒</span>
-              </div>
-              <div>
-                <h4 class="font-semibold text-brand-wood text-sm uppercase tracking-wider">
-                  <span class="lang-es">Horario</span>
-                  <span class="lang-ca hidden">Horari</span>
-                </h4>
-                <p class="text-brand-wood/80 mt-1">
-                  <span class="lang-es">Abierto de martes a domingo.</span>
-                  <span class="lang-ca hidden">Obert de dimarts a diumenge.</span>
-                  <br>
-                  <strong class="text-brand-olive">
-                    <span class="lang-es">Días especiales:</span>
-                    <span class="lang-ca hidden">Dies especials:</span>
-                  </strong>
-                  <span class="lang-es">Miércoles y domingos nuestras paellas vuelan. ¡Se recomienda encargar antes!</span>
-                  <span class="lang-ca hidden">Dimecres i diumenges les nostres paelles volen. ¡Es recomana encarregar abans!</span>
-                </p>
-              </div>
-            </div>
-            
-          </div>
-          
+          <span class="h-[1px] w-8 bg-brand-gold"></span>
         </div>
         
-        <!-- Bloque Derecho: Mapa Interactivo -->
-        <div class="lg:col-span-7 w-full h-[400px] lg:h-[450px] relative rounded-2xl overflow-hidden border border-brand-sand shadow-lg group">
+        <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-shadow-hero leading-tight">
+          Bar Es Passeig
+          <span class="block text-brand-gold/90 mt-2 font-serif italic font-normal text-2xl sm:text-3xl md:text-4xl">Can Pedret</span>
+        </h1>
+        
+        <p class="text-lg sm:text-xl md:text-2xl font-light tracking-wide text-brand-sand max-w-2xl mx-auto mb-10 text-shadow-hero">
+          <span class="lang-es">El sabor de lo auténtico y el ambiente más familiar.</span>
+          <span class="lang-ca hidden">El sabor de l'autèntic i l'ambient més familiar.</span>
+        </p>
+        
+        <!-- Botones de Acción Destacados (CTAs) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           
-          <!-- Google Maps Iframe -->
-          <iframe 
-            src="https://maps.google.com/maps?q=Es%20Passeig,%20Passeig%20d'Antoni%20Maura,%20Bunyola&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-            class="w-full h-full border-0 absolute inset-0 z-0" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Ubicación de Bar Es Passeig - Can Pedret en Bunyola, Mallorca">
-          </iframe>
-          
-          <!-- Botón de apertura externa en móvil para mejorar UX -->
-          <a href="https://maps.app.goo.gl/E7UcRHT7ypk3KpWN9" target="_blank" rel="noopener noreferrer" class="absolute bottom-4 right-4 bg-brand-wood hover:bg-brand-terracotta text-white font-medium text-xs px-4 py-2.5 rounded-lg shadow-md transition-colors duration-300 z-10 flex items-center">
-            <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+          <!-- CTA 1: Ver Menú en Instagram -->
+          <a href="https://www.instagram.com/barespasseignou_canpedret/" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-brand-terracotta hover:bg-brand-terracottaHover text-white text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+            <svg class="w-5 h-5 mr-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
-            <span class="lang-es">Abrir en Google Maps</span>
-            <span class="lang-ca hidden">Obrir a Google Maps</span>
+            <span class="lang-es">Ver Menú del Día</span>
+            <span class="lang-ca hidden">Veure Menú del Dia</span>
+          </a>
+          
+          <!-- CTA 2: Llamar por teléfono -->
+          <a href="tel:971148410" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-brand-wood text-white text-base font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            <span class="lang-es">Llamar al 971 148 410</span>
+            <span class="lang-ca hidden">Trucar al 971 148 410</span>
           </a>
           
         </div>
-        
       </div>
-    </div>
-  </section>
+      
+      <!-- Indicador de Scroll hacia abajo -->
+      <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/50 hover:text-white transition-colors duration-200 z-10">
+        <a href="#cocina" aria-label="Ir a la sección de Nuestra Cocina / Anar a la secció de La nostra cuina" class="flex flex-col items-center">
+          <span class="text-xs uppercase tracking-widest font-semibold mb-2">
+            <span class="lang-es">Descubrir</span>
+            <span class="lang-ca hidden">Descobrir</span>
+          </span>
+          <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN "NUESTRA COCINA" ==================== -->
+    <section id="cocina" class="py-24 bg-brand-beige overflow-hidden" aria-label="Nuestra Cocina / La nostra cuina">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <!-- Bloque de Texto -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="flex items-center space-x-2">
+              <span class="text-brand-terracotta font-bold text-sm tracking-wider uppercase">
+                <span class="lang-es">De la cocina a tu mesa</span>
+                <span class="lang-ca hidden">De la cuina a la teva taula</span>
+              </span>
+              <span class="h-[1px] w-12 bg-brand-terracotta"></span>
+            </div>
+            
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-wood leading-tight">
+              <span class="lang-es">Nuestra Cocina</span>
+              <span class="lang-ca hidden">La nostra cuina</span>
+            </h2>
+            
+            <!-- Separador decorativo -->
+            <div class="w-16 h-1 bg-brand-gold my-4" role="presentation"></div>
+            
+            <div class="relative">
+              <!-- Comilla decorativa grande de fondo -->
+              <span class="absolute -top-10 -left-6 font-serif text-8xl text-brand-sand/50 select-none" role="presentation">“</span>
+              
+              <p class="relative font-sans text-lg sm:text-xl text-brand-wood/90 leading-relaxed italic pr-4">
+                <span class="lang-es">¿Te apetecen unos Calamarins o una buena Paella? En Es Passeig cocinamos como en casa. Nos apasiona el producto local y el trato cercano con nuestros clientes. Todos los miércoles y domingos preparamos nuestras famosas paellas caseras (¡también para llevar!), aunque te advertimos... ¡vuelan! Pásate a comprobar por qué nuestro ambiente familiar te hará sentir como en tu propio comedor.</span>
+                <span class="lang-ca hidden">Et ve de gust uns Calamarins o una bona Paella? A Es Passeig cuinem com a casa. Ens apassiona el producte local i el tracte proper amb els nostres clients. Tots els dimecres i diumenges preparem les nostres famoses paelles casolanes (¡també per emportar!), encara que t'advertim... ¡volen! Vine a comprovar per què el nostre ambient familiar et farà sentir com al teu propi menjador.</span>
+              </p>
+            </div>
+            
+            <!-- Firma de la casa -->
+            <div class="pt-4 flex items-center space-x-4">
+              <div class="h-10 w-10 rounded-full bg-brand-sand flex items-center justify-center" role="presentation">
+                <svg class="w-5 h-5 text-brand-olive" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-serif text-lg font-bold text-brand-wood italic">Es Passeig - Can Pedret</p>
+                <p class="text-xs text-brand-olive font-semibold uppercase tracking-wider">
+                  <span class="lang-es">Tu bar familiar en Bunyola</span>
+                  <span class="lang-ca hidden">El teu bar familiar a Bunyola</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contenedor Visual de la Paella -->
+          <div class="lg:col-span-5 relative">
+            <!-- Elemento decorativo de fondo (marco beige/sombra) -->
+            <div class="absolute inset-0 bg-brand-sand rounded-2xl transform translate-x-3 translate-y-3 z-0" role="presentation"></div>
+            
+            <!-- Imagen de la paella enmarcada -->
+            <div class="relative z-10 overflow-hidden rounded-2xl border-4 border-white shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
+              <img src="./assets/spanish_paella.png" alt="Fotografía en primer plano de una paella marinera casera servida en paella tradicional de hierro sobre una mesa de madera" class="w-full h-[350px] sm:h-[450px] object-cover">
+              
+              <!-- Etiqueta decorativa sobre la foto -->
+              <div class="absolute bottom-4 left-4 bg-brand-wood/90 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-serif text-sm italic shadow-md">
+                <span class="lang-es">🥘 Famosas paellas los miércoles y domingos</span>
+                <span class="lang-ca hidden">🥘 Famoses paelles els dimecres i diumenges</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN "EL MENÚ DEL DÍA" ==================== -->
+    <section id="menu" class="py-24 bg-brand-cream border-y border-brand-sand/30" aria-label="Menú del Día / Menú del dia">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Encabezado de la Sección -->
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-wood">
+            <span class="lang-es">📋 ¿Qué comemos hoy?</span>
+            <span class="lang-ca hidden">📋 Què mengem avui?</span>
+          </h2>
+          <div class="w-16 h-1 bg-brand-terracotta mx-auto" role="presentation"></div>
+          <p class="text-sm sm:text-base font-semibold text-brand-terracotta uppercase tracking-widest">
+            <span class="lang-es">Fresco, de mercado y hecho hoy</span>
+            <span class="lang-ca hidden">Fresc, de mercat i fet avui</span>
+          </p>
+          <p class="text-base sm:text-lg text-brand-wood/80 max-w-xl mx-auto italic">
+            <strong class="font-medium text-brand-wood">
+              <span class="lang-es">Nota para el cliente:</span>
+              <span class="lang-ca hidden">Nota per al client:</span>
+            </strong>
+            <span class="lang-es">No busques una carta fija aquí; en Es Passeig cocinamos con lo que nos ofrece el mercado cada mañana. Cambiamos nuestro menú diariamente para garantizar la máxima frescura.</span>
+            <span class="lang-ca hidden">No busquis una carta fixa aquí; a Es Passeig cuinem amb el que ens ofereix el mercat cada matí. Canviem el nostre menú diàriament per garantir la màxima frescor.</span>
+          </p>
+        </div>
+
+        <!-- Tarjetas de Precios del Menú y Paellas -->
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 px-4">
+          <!-- Bloque de Menús -->
+          <div class="bg-brand-beige p-6 sm:p-8 rounded-2xl border border-brand-sand/60 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-wood flex items-center">
+                  <span class="text-brand-terracotta mr-2" aria-hidden="true">🍴</span>
+                  <span class="lang-es">Menú del Día</span>
+                  <span class="lang-ca hidden">Menú del Dia</span>
+                </h3>
+                <span class="px-2.5 py-1 bg-brand-olive/10 text-brand-olive rounded-full text-xs font-bold uppercase tracking-wider">
+                  <span class="lang-es">De Mercado</span>
+                  <span class="lang-ca hidden">De Mercat</span>
+                </span>
+              </div>
+              <ul class="space-y-4 font-sans text-brand-wood">
+                <li class="flex items-center justify-between border-b border-brand-sand/30 pb-2">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-sm sm:text-base">
+                      <span class="lang-es">Menú Entre Semana</span>
+                      <span class="lang-ca hidden">Menú Entre Setmana</span>
+                    </span>
+                    <span class="text-xs text-brand-wood/60">
+                      <span class="lang-es">De lunes a viernes</span>
+                      <span class="lang-ca hidden">De dilluns a divendres</span>
+                    </span>
+                  </div>
+                  <span class="text-xl font-bold text-brand-terracotta">9€</span>
+                </li>
+                <li class="flex items-center justify-between border-b border-brand-sand/30 pb-2">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-sm sm:text-base">
+                      <span class="lang-es">Menú Fin de Semana</span>
+                      <span class="lang-ca hidden">Menú Cap de Setmana</span>
+                    </span>
+                    <span class="text-xs text-brand-wood/60">
+                      <span class="lang-es">Sábados y domingos</span>
+                      <span class="lang-ca hidden">Dissabtes i diumenges</span>
+                    </span>
+                  </div>
+                  <span class="text-xl font-bold text-brand-terracotta">12€</span>
+                </li>
+                <li class="flex items-center justify-between pt-1">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-sm sm:text-base">
+                      <span class="lang-es">Opción de Medio Menú</span>
+                      <span class="lang-ca hidden">Opció de Mig Menú</span>
+                    </span>
+                    <span class="text-xs text-brand-wood/60">
+                      <span class="lang-es">Disponible todos los días</span>
+                      <span class="lang-ca hidden">Disponible tots els dies</span>
+                    </span>
+                  </div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-brand-olive bg-brand-cream border border-brand-sand/40 px-2.5 py-1.5 rounded-lg">
+                    <span class="lang-es">Cada día</span>
+                    <span class="lang-ca hidden">Cada dia</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bloque de Paellas -->
+          <div class="bg-brand-beige p-6 sm:p-8 rounded-2xl border border-brand-sand/60 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-wood flex items-center">
+                  <span class="text-brand-terracotta mr-2" aria-hidden="true">🥘</span>
+                  <span class="lang-es">Nuestras Paellas</span>
+                  <span class="lang-ca hidden">Les nostres paelles</span>
+                </h3>
+                <span class="px-2.5 py-1 bg-brand-terracotta/10 text-brand-terracotta rounded-full text-xs font-bold uppercase tracking-wider">
+                  <span class="lang-es">Especialidad</span>
+                  <span class="lang-ca hidden">Especialitat</span>
+                </span>
+              </div>
+              <ul class="space-y-4 font-sans text-brand-wood">
+                <li class="flex items-center justify-between border-b border-brand-sand/30 pb-2">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-sm sm:text-base">
+                      <span class="lang-es">Ración para llevar</span>
+                      <span class="lang-ca hidden">Ració per emportar</span>
+                    </span>
+                    <span class="text-xs text-brand-wood/60">
+                      <span class="lang-es">Miércoles y domingos</span>
+                      <span class="lang-ca hidden">Dimecres i diumenges</span>
+                    </span>
+                  </div>
+                  <span class="text-xl font-bold text-brand-terracotta">7€</span>
+                </li>
+                <li class="flex items-center justify-between pt-1">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-sm sm:text-base">
+                      <span class="lang-es">Pedidos de Paella</span>
+                      <span class="lang-ca hidden">Encàrrecs de Paella</span>
+                    </span>
+                    <span class="text-xs text-brand-wood/60">
+                      <span class="lang-es">Por encargo previo</span>
+                      <span class="lang-ca hidden">Per encàrrec previ</span>
+                    </span>
+                  </div>
+                  <span class="text-xl font-bold text-brand-terracotta">10€<span class="text-xs font-normal text-brand-wood/75">/p</span></span>
+                </li>
+              </ul>
+            </div>
+            <p class="text-[11px] text-brand-olive/90 italic mt-6 border-t border-brand-sand/20 pt-3 flex items-center">
+              <span class="mr-1" role="img" aria-label="Atención / Atenció">⚠️</span>
+              <span class="lang-es">Nota: Recuerda llamar con antelación para asegurar tus raciones.</span>
+              <span class="lang-ca hidden">Nota: Recorda trucar amb antelació per assegurar les teves racions.</span>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Contenedor Maquetado Estéticamente para Social Feed -->
+        <div class="max-w-5xl mx-auto mb-14">
+          
+          <!-- COMENTARIO REQUERIDO EN EL CÓDIGO -->
+          <!-- INSERTA TU WIDGET DE INSTAGRAM AQUÍ -->
+          
+          <!-- Simulación visual de un espacio limpio y minimalista -->
+          <div class="bg-brand-beige rounded-2xl border-2 border-dashed border-brand-sand p-10 text-center flex flex-col items-center justify-center space-y-3 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center text-brand-olive/75 text-xl" role="presentation">
+              📷
+            </div>
+            <h4 class="font-serif text-lg font-bold text-brand-wood">
+              <span class="lang-es">Novedades en nuestro Instagram</span>
+              <span class="lang-ca hidden">Novetats al nostre Instagram</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-brand-wood/60 max-w-md">
+              <span class="lang-es">Espacio reservado para las últimas publicaciones de Instagram. Aquí se cargarán automáticamente nuestras fotos diarias, recomendaciones y platos del día.</span>
+              <span class="lang-ca hidden">Espai reservat per a les últimes publicacions d'Instagram. Aquí es carregaran automàticament les nostres fotos diàries, recomanacions i plats del dia.</span>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Botones para Seguir Redes Sociales -->
+        <div class="flex items-center justify-center">
+          
+          <!-- Enlace Instagram -->
+          <a href="https://www.instagram.com/barespasseignou_canpedret/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border border-brand-terracotta text-brand-terracotta hover:bg-brand-terracotta hover:text-white rounded-lg font-medium tracking-wide transition-all duration-300 text-sm shadow-sm hover:shadow" aria-label="Seguir a Bar Es Passeig en Instagram (abre en pestaña nueva) / Seguir a Bar Es Passeig a Instagram (obre en pestanya nova)">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+            </svg>
+            <span class="lang-es">[ Síguenos en Instagram ]</span>
+            <span class="lang-ca hidden">[ Segueix-nos a Instagram ]</span>
+          </a>
+          
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN "INFO PRÁCTICA Y RESERVAS" ==================== -->
+    <section id="reservas" class="py-24 bg-brand-beige" aria-label="Contacto y Reservas / Contacte i reserves">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Título de Sección -->
+        <div class="text-center space-y-4 mb-16">
+          <div class="flex items-center justify-center space-x-2">
+            <span class="text-brand-olive font-bold text-sm tracking-wider uppercase">
+              <span class="lang-es">¡Te esperamos!</span>
+              <span class="lang-ca hidden">T'esperem!</span>
+            </span>
+            <span class="h-[1px] w-12 bg-brand-olive" role="presentation"></span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-wood">
+            <span class="lang-es">Contacto y Reservas</span>
+            <span class="lang-ca hidden">Contacte i Reserves</span>
+          </h2>
+          <div class="w-16 h-1 bg-brand-gold mx-auto" role="presentation"></div>
+        </div>
+        
+        <!-- Contenido en cuadrícula -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          <!-- Bloque Izquierdo: Información y Reservas -->
+          <div class="lg:col-span-5 space-y-8">
+            
+            <!-- Tarjeta de Reservas -->
+            <div class="bg-brand-cream p-8 rounded-2xl border border-brand-sand shadow-sm space-y-6">
+              <h3 class="font-serif text-2xl font-bold text-brand-wood flex items-center">
+                <span class="text-brand-terracotta mr-3 text-2xl" aria-hidden="true">📆</span>
+                <span class="lang-es">Reservas y Pedidos</span>
+                <span class="lang-ca hidden">Reserves i Comandes</span>
+              </h3>
+              
+              <p class="text-brand-wood/90 leading-relaxed font-sans text-base">
+                <span class="lang-es">No disponemos de sistema de reserva online. Gestionamos todo a la vieja usanza, con una sonrisa y al teléfono. Llámanos al <strong class="font-bold text-brand-terracotta">971 148 410</strong> para asegurar tu mesa o encargar tu paella para llevar.</span>
+                <span class="lang-ca hidden">No disposem de sistema de reserva online. Gestionem tot a la antiga, amb un somriure i al telèfon. Truca'ns al <strong class="font-bold text-brand-terracotta">971 148 410</strong> per assegurar la teva taula o encarregar la teva paella per emportar.</span>
+              </p>
+              
+              <!-- Botón Llamar Directo -->
+              <a href="tel:971148410" class="inline-flex w-full items-center justify-center px-6 py-4 bg-brand-terracotta hover:bg-brand-terracottaHover text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center" aria-label="Llamar para reservar al 971 148 410 / Trucar per reservar al 971 148 410">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <span class="lang-es">LLAMAR AHORA: 971 148 410</span>
+                <span class="lang-ca hidden">TRUCAR ARA: 971 148 410</span>
+              </a>
+            </div>
+            
+          </div>
+          
+          <!-- Tarjeta de Detalles del Negocio -->
+          <div class="lg:col-span-7 space-y-8">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <!-- Dirección -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 mt-1">
+                  <span class="text-2xl" role="img" aria-label="Dirección / Adreça">📍</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-brand-wood text-sm uppercase tracking-wider">
+                    <span class="lang-es">Dirección</span>
+                    <span class="lang-ca hidden">Adreça</span>
+                  </h4>
+                  <p class="text-brand-wood/80 mt-1">
+                    <span class="lang-es">Passeig d'Antoni Maura, 07110 Bunyola, Mallorca (Islas Baleares)</span>
+                    <span class="lang-ca hidden">Passeig d'Antoni Maura, 07110 Bunyola, Mallorca (Illes Balears)</span>
+                  </p>
+                  <!-- Botón de Maps directo -->
+                  <a href="https://maps.app.goo.gl/E7UcRHT7ypk3KpWN9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-brand-terracotta hover:text-brand-terracottaHover mt-2 transition-colors duration-200" aria-label="Ver ubicación en Google Maps (abre en pestaña nueva) / Veure ubicació a Google Maps (obre en pestanya nova)">
+                    <span class="lang-es">Ver en Google Maps &rarr;</span>
+                    <span class="lang-ca hidden">Veure a Google Maps &rarr;</span>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Horario Especial -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 mt-1">
+                  <span class="text-2xl" role="img" aria-label="Horario / Horari">🕒</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-brand-wood text-sm uppercase tracking-wider">
+                    <span class="lang-es">Horario</span>
+                    <span class="lang-ca hidden">Horari</span>
+                  </h4>
+                  <p class="text-brand-wood/80 mt-1">
+                    <span class="lang-es">Abierto de martes a domingo.</span>
+                    <span class="lang-ca hidden">Obert de dimarts a diumenge.</span>
+                    <br>
+                    <strong class="text-brand-olive font-semibold">
+                      <span class="lang-es">Días especiales:</span>
+                      <span class="lang-ca hidden">Dies especials:</span>
+                    </strong>
+                    <span class="lang-es">Miércoles y domingos nuestras paellas vuelan. ¡Se recomienda encargar antes!</span>
+                    <span class="lang-ca hidden">Dimecres i diumenges les nostres paelles volen. ¡Es recomana encarregar abans!</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mapa Interactivo -->
+            <div class="w-full h-[350px] lg:h-[400px] relative rounded-2xl overflow-hidden border border-brand-sand shadow-lg group">
+              <!-- Google Maps Iframe -->
+              <iframe 
+                src="https://maps.google.com/maps?q=Es%20Passeig,%20Passeig%20d'Antoni%20Maura,%20Bunyola&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                class="w-full h-full border-0 absolute inset-0 z-0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa interactivo con la ubicación de Bar Es Passeig - Can Pedret en Bunyola">
+              </iframe>
+              
+              <!-- Botón de apertura externa en móvil para mejorar UX -->
+              <a href="https://maps.app.goo.gl/E7UcRHT7ypk3KpWN9" target="_blank" rel="noopener noreferrer" class="absolute bottom-4 right-4 bg-brand-wood hover:bg-brand-terracotta text-white font-medium text-xs px-4 py-2.5 rounded-lg shadow-md transition-colors duration-300 z-10 flex items-center" aria-label="Abrir mapa en la aplicación de Google Maps (abre en pestaña nueva) / Obrir mapa a l'aplicació de Google Maps (obre en pestanya nova)">
+                <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="lang-es">Abrir en Google Maps</span>
+                <span class="lang-ca hidden">Obrir a Google Maps</span>
+              </a>
+            </div>
+
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-brand-wood text-brand-beige border-t border-brand-wood/80 py-12">
+  <footer class="bg-brand-wood text-brand-beige border-t border-brand-wood/80 py-12" aria-label="Pie de Página / Peu de Pàgina">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
       
       <!-- Marca en Footer -->
@@ -673,24 +690,24 @@
       </p>
       
       <!-- Enlaces Rápidos del Pie de Página -->
-      <div class="flex items-center justify-center space-x-6 text-sm">
+      <nav class="flex items-center justify-center space-x-6 text-sm" aria-label="Enlaces del pie de página / Enllaços del peu de pàgina">
         <a href="#inicio" class="text-brand-sand/70 hover:text-white transition-colors duration-200">
           <span class="lang-es">Inicio</span>
           <span class="lang-ca hidden">Inici</span>
         </a>
-        <span class="text-brand-sand/30">&bull;</span>
+        <span class="text-brand-sand/30" role="presentation">&bull;</span>
         <a href="#cocina" class="text-brand-sand/70 hover:text-white transition-colors duration-200">
           <span class="lang-es">Cocina</span>
           <span class="lang-ca hidden">Cuina</span>
         </a>
-        <span class="text-brand-sand/30">&bull;</span>
+        <span class="text-brand-sand/30" role="presentation">&bull;</span>
         <a href="#menu" class="text-brand-sand/70 hover:text-white transition-colors duration-200">Menú</a>
-        <span class="text-brand-sand/30">&bull;</span>
+        <span class="text-brand-sand/30" role="presentation">&bull;</span>
         <a href="#reservas" class="text-brand-sand/70 hover:text-white transition-colors duration-200">
           <span class="lang-es">Contacto</span>
           <span class="lang-ca hidden">Contacte</span>
         </a>
-      </div>
+      </nav>
       
       <!-- Copyright y creador -->
       <div class="pt-8 border-t border-brand-sand/10 text-xs text-brand-sand/55 flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -717,6 +734,8 @@
     const closeIcon = document.getElementById('close-icon');
 
     menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', !isExpanded);
       mobileMenu.classList.toggle('hidden');
       hamburgerIcon.classList.toggle('hidden');
       closeIcon.classList.toggle('hidden');
@@ -725,6 +744,7 @@
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
+        menuBtn.setAttribute('aria-expanded', 'false');
         mobileMenu.classList.add('hidden');
         hamburgerIcon.classList.remove('hidden');
         closeIcon.classList.add('hidden');
@@ -745,7 +765,18 @@
 
     // SISTEMA DE CAMBIO DE IDIOMA (ESPANOL / CATALAN)
     function setLanguage(lang) {
-      if (lang === 'ca') {
+      const isCa = lang === 'ca';
+      document.documentElement.lang = lang; // Actualización semántica del idioma del documento para lectores de pantalla
+      
+      // Actualizar dinámicamente el título del iframe de Google Maps para lectores de pantalla
+      const mapIframe = document.querySelector('iframe');
+      if (mapIframe) {
+        mapIframe.title = isCa 
+          ? "Mapa interactiu amb la ubicació de Bar Es Passeig - Can Pedret a Bunyola" 
+          : "Mapa interactivo con la ubicación de Bar Es Passeig - Can Pedret en Bunyola";
+      }
+
+      if (isCa) {
         document.querySelectorAll('.lang-es').forEach(el => el.classList.add('hidden'));
         document.querySelectorAll('.lang-ca').forEach(el => el.classList.remove('hidden'));
         
