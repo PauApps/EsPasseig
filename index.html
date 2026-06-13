@@ -943,6 +943,29 @@
         carouselContainer.addEventListener('mouseleave', startAutoplay);
         carouselContainer.addEventListener('focusin', stopAutoplay);
         carouselContainer.addEventListener('focusout', startAutoplay);
+
+        // Soporte para gestos táctiles (deslizar el dedo / swipe) en móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          
+          const swipeThreshold = 50; // Mínimo de 50px de movimiento para registrar el deslizamiento
+          const difference = touchStartX - touchEndX;
+
+          if (Math.abs(difference) > swipeThreshold) {
+            if (difference > 0) {
+              nextSlide(); // Deslizar izquierda -> Siguiente
+            } else {
+              prevSlide(); // Deslizar derecha -> Anterior
+            }
+          }
+        }, { passive: true });
       }
     });
   </script>
