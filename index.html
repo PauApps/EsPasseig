@@ -353,6 +353,12 @@
                 <!-- Slide 1: Paella -->
                 <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out z-10" aria-roledescription="slide" aria-label="1 de 3">
                   <img src="./assets/spanish_paella.png" alt="Fotografía de paella marinera casera recién hecha en una sartén tradicional de hierro" class="w-full h-full object-cover">
+                  
+                  <!-- Vista previa difuminada de la siguiente imagen (Solo Desktop) -->
+                  <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-28 overflow-hidden z-20 pointer-events-none" style="mask: url(#fade-mask); -webkit-mask: url(#fade-mask); mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));">
+                    <img src="./assets/grilled_squids.png" alt="Fotografía de calamarines a la plancha aliñados con ajo, perejil y limón sobre un plato rústico" class="w-full h-full object-cover blur-[4px] scale-105 opacity-90">
+                  </div>
+
                   <!-- Pie de foto / Descripción -->
                   <div class="absolute bottom-4 left-4 right-4 lg:right-32 bg-brand-wood/95 backdrop-blur-sm px-4 py-2.5 rounded-lg text-white font-serif text-sm italic shadow-md z-20">
                     <span class="lang-es">🥘 Famosas paellas los miércoles y domingos</span>
@@ -363,6 +369,12 @@
                 <!-- Slide 2: Calamarins -->
                 <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out z-0" aria-roledescription="slide" aria-label="2 de 3" aria-hidden="true">
                   <img src="./assets/grilled_squids.png" alt="Fotografía de calamarines a la plancha aliñados con ajo, perejil y limón sobre un plato rústico" class="w-full h-full object-cover">
+                  
+                  <!-- Vista previa difuminada de la siguiente imagen (Solo Desktop) -->
+                  <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-28 overflow-hidden z-20 pointer-events-none" style="mask: url(#fade-mask); -webkit-mask: url(#fade-mask); mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));">
+                    <img src="./assets/tapas_selection.png" alt="Fotografía a vista de pájaro de una selección de tapas españolas tradicionales en cuencos de barro" class="w-full h-full object-cover blur-[4px] scale-105 opacity-90">
+                  </div>
+
                   <!-- Pie de foto / Descripción -->
                   <div class="absolute bottom-4 left-4 right-4 lg:right-32 bg-brand-wood/95 backdrop-blur-sm px-4 py-2.5 rounded-lg text-white font-serif text-sm italic shadow-md z-20">
                     <span class="lang-es">🦑 Calamarins frescos a la plancha con ajo y perejil</span>
@@ -373,6 +385,12 @@
                 <!-- Slide 3: Tapas variadas -->
                 <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out z-0" aria-roledescription="slide" aria-label="3 de 3" aria-hidden="true">
                   <img src="./assets/tapas_selection.png" alt="Fotografía a vista de pájaro de una selección de tapas españolas tradicionales en cuencos de barro" class="w-full h-full object-cover">
+                  
+                  <!-- Vista previa difuminada de la siguiente imagen (Solo Desktop) -->
+                  <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-28 overflow-hidden z-20 pointer-events-none" style="mask: url(#fade-mask); -webkit-mask: url(#fade-mask); mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));">
+                    <img src="./assets/spanish_paella.png" alt="Fotografía de paella marinera casera recién hecha en una sartén tradicional de hierro" class="w-full h-full object-cover blur-[4px] scale-105 opacity-90">
+                  </div>
+
                   <!-- Pie de foto / Descripción -->
                   <div class="absolute bottom-4 left-4 right-4 lg:right-32 bg-brand-wood/95 backdrop-blur-sm px-4 py-2.5 rounded-lg text-white font-serif text-sm italic shadow-md z-20">
                     <span class="lang-es">🧆 Tapas tradicionales y raciones variadas de mercado</span>
@@ -380,11 +398,6 @@
                   </div>
                 </div>
 
-              </div>
-
-              <!-- Vista previa difuminada de la siguiente imagen (Solo Desktop) -->
-              <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-28 overflow-hidden z-20 pointer-events-none" style="mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));">
-                <img id="carousel-next-peek" src="./assets/grilled_squids.png" alt="Fotografía de calamarines a la plancha aliñados con ajo, perejil y limón sobre un plato rústico" class="w-full h-full object-cover blur-[4px] scale-105 opacity-90 transition-all duration-700">
               </div>
 
               <!-- Botones de Navegación del Carrusel -->
@@ -904,17 +917,7 @@
         }
       });
 
-      // Actualizar vista previa de la siguiente imagen (solo desktop)
-      const nextIndex = (currentSlideIndex + 1) % slides.length;
-      const nextSlideEl = slides[nextIndex];
-      if (nextSlideEl) {
-        const nextImg = nextSlideEl.querySelector('img');
-        const nextPeekImg = document.getElementById('carousel-next-peek');
-        if (nextPeekImg && nextImg) {
-          nextPeekImg.src = nextImg.src;
-          nextPeekImg.alt = nextImg.alt;
-        }
-      }
+
     }
 
     function nextSlide() {
@@ -986,5 +989,19 @@
       }
     });
   </script>
+
+  <!-- Máscara SVG para la vista previa difuminada del carrusel (Para máxima compatibilidad cross-browser) -->
+  <svg width="0" height="0" class="absolute pointer-events-none" aria-hidden="true">
+    <defs>
+      <mask id="fade-mask" maskContentUnits="objectBoundingBoxes">
+        <linearGradient id="fade-gradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="white" stop-opacity="0" />
+          <stop offset="0.3" stop-color="white" stop-opacity="0.3" />
+          <stop offset="1" stop-color="white" stop-opacity="1" />
+        </linearGradient>
+        <rect width="1" height="1" fill="url(#fade-gradient)" />
+      </mask>
+    </defs>
+  </svg>
 </body>
 </html>
